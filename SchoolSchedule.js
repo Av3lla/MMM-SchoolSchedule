@@ -107,12 +107,17 @@ Module.register("SchoolSchedule", {
     scheDatesDiv.className = "scheDates";
     var scheNamesDiv = document.createElement("div");
     scheNamesDiv.className = "scheNames";
-    
-    scheDatesDiv.innerHTML = this.scheduleDates;
-    scheNamesDiv.innerHTML = this.scheduleNames;
-    
-    scheduleDiv.append(scheDatesDiv, scheNamesDiv);
-    
+    var exceptionDiv = document.createElement("div");
+
+    if (!this.isThereSchedule) {
+      exceptionDiv.innerHTML = "설정한 기간 중 학사일정이 없습니다.";
+      return exceptionDiv;
+    } else {
+      scheDatesDiv.innerHTML = this.scheduleDates;
+      scheNamesDiv.innerHTML = this.scheduleNames;
+    }
+
+    scheduleDiv.append(scheDatesDiv, scheNamesDiv);    
     return scheduleDiv;
   }
 });
