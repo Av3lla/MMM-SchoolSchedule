@@ -44,7 +44,9 @@ A module for the [MagicMirror](https://github.com/MichMich/MagicMirror) to displ
     | Option | Description | Default | Required |
     |---|---|---|---|
     | `key` | the API key from OpenWeatherMap.| `null` | O |
-    | `schoolName` | `the name of school you want to get schedule from.` | `null` | O |
+    | `schoolName` | the name of school you want to get schedule from. | `null` | O |
+    |`loadDates`| the number of days to load | `7` | O |
+    | `maxIndex` | limit the maximum number of schedules to be displayed | `7` | O |
     | `updateInterval` | change the update period in Milliseconds. | `1000*60*60` | X |
 
 ---

@@ -9,6 +9,8 @@ Module.register("SchoolSchedule", {
   defaults: {
     key: null,
     schoolName: null,
+    loadDates: 7,
+    maxIndex: 7,
     updateInterval: 1000 * 60 * 60
   },
   
@@ -45,12 +47,12 @@ Module.register("SchoolSchedule", {
     const requestUrl = `${url}?Key=${this.config.key}&Type=${'json'}&pIndex=${1}&pSize=${100}&SCHUL_NM=${this.config.schoolName}`;
     // fetch
     const schoolInfo = await fetch(requestUrl)
-      .then(rawResponse => {
-        return rawResponse.json();
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    .then(rawResponse => {
+      return rawResponse.json();
+    })
+    .catch(error => {
+      console.log(error);
+    });
     // get school code from schoolInfo
     const result = schoolInfo.schoolInfo[1].row[0];
     const eduCode = result.ATPT_OFCDC_SC_CODE;
@@ -61,20 +63,23 @@ Module.register("SchoolSchedule", {
   },
   
   getSchedule: async function(eduCode, schoolCode) {
-    //const formattedDate = date.replace(/-/g, '').slice(1, 8);
-    const fromDate = "20220404";
-    const toDate = "20220411";
+    //const date = new Date('2022-03-01');
+    const date = new Date();
+    const fromDate = date.toISOString().replace(/-/g, '').slice(0, 8);
+    let toDate = date;
+    toDate.setDate(toDate.getDate() + this.config.loadDates);
+    toDate = toDate.toISOString().replace(/-/g, '').slice(0, 8);
     // request
     const url = "https://open.neis.go.kr/hub/SchoolSchedule";
-    const requestUrl = `${url}?Key=${this.config.key}&Type=${'json'}&pIndex=${1}&pSize=${100}&ATPT_OFCDC_SC_CODE=${eduCode}&SD_SCHUL_CODE=${schoolCode}&AA_FROM_YMD=${fromDate}&AA_TO_YMD=${toDate}`;
+    const requestUrl = `${url}?Key=${this.config.key}&Type=${'json'}&pIndex=${1}&pSize=${this.config.maxIndex}&ATPT_OFCDC_SC_CODE=${eduCode}&SD_SCHUL_CODE=${schoolCode}&AA_FROM_YMD=${fromDate}&AA_TO_YMD=${toDate}`;
     // fetch
     let rawScheduleData = await fetch(requestUrl)
-      .then(rawResponse => {
-        return rawResponse.json();
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    .then(rawResponse => {
+      return rawResponse.json();
+    })
+    .catch(error => {
+      console.log(error);
+    });
     try {
       const scheduleData = rawScheduleData.SchoolSchedule[1].row;
       for (i of scheduleData) {
