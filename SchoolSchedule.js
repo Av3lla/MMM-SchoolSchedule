@@ -108,16 +108,22 @@ Module.register("SchoolSchedule", {
     var scheNamesDiv = document.createElement("div");
     scheNamesDiv.className = "scheNames";
     var exceptionDiv = document.createElement("div");
+    exceptionDiv.className = "exception";
+    var exceptionTextDiv = document.createElement("div");
+    var developedbyDiv = document.createElement("div");
+    developedbyDiv.className = "devby";
+    developedbyDiv.innerHTML = "이지원 Github @Av3lla";
 
     if (!this.isThereSchedule) {
-      exceptionDiv.innerHTML = "설정한 기간 중 학사일정이 없습니다.";
+      exceptionTextDiv.innerHTML = "설정한 기간 중 학사일정이 없습니다.";
+      exceptionDiv.append(exceptionTextDiv, developedbyDiv);
       return exceptionDiv;
     } else {
       scheDatesDiv.innerHTML = this.scheduleDates;
       scheNamesDiv.innerHTML = this.scheduleNames;
     }
 
-    scheduleDiv.append(scheDatesDiv, scheNamesDiv);    
+    scheduleDiv.append(scheDatesDiv, scheNamesDiv, developedbyDiv);    
     return scheduleDiv;
   }
 });
