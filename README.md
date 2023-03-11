@@ -54,4 +54,4 @@ A module for the [MagicMirror](https://github.com/MichMich/MagicMirror) to displ
 ### NOTE
 
 #### Known Issues
-  * You Need to change the *folder name* from `school-schedule-module` to `AirPollution`.
+  * You Need to change the *folder name* from `school-schedule-module` to `SchoolSchedule`.
