@@ -17,8 +17,9 @@
 
 .schedule {
   display: grid;
-  grid-template-columns: 25% 75%;
+  grid-template-columns: 20% 75%;
   grid-template-rows: 100%;
+  column-gap: 5%;
   font-size: 35px;
   color: white;
 }

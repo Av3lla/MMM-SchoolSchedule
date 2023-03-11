@@ -51,7 +51,7 @@ Module.register("SchoolSchedule", {
       return rawResponse.json();
     })
     .catch(error => {
-      console.log(error);
+      console.error(error);
     });
     // get school code from schoolInfo
     const result = schoolInfo.schoolInfo[1].row[0];
@@ -78,7 +78,7 @@ Module.register("SchoolSchedule", {
       return rawResponse.json();
     })
     .catch(error => {
-      console.log(error);
+      console.error(error);
     });
     try {
       const scheduleData = rawScheduleData.SchoolSchedule[1].row;
@@ -87,12 +87,12 @@ Module.register("SchoolSchedule", {
           continue;
         } else {
           this.scheduleDates += i.AA_YMD.slice(4, 9) + '</br>';
-          this.scheduleNames += i.EVENT_NM.slice(0, 8) + '</br>';
+          this.scheduleNames += i.EVENT_NM.slice(0, 12) + '</br>';
         }
       }
       this.isThereSchedule = true;
     } catch (error) {
-      console.log(error);
+      console.error(error);
       if (error.name === "TypeError") {
         this.isThereSchedule = false;
       }
@@ -101,6 +101,8 @@ Module.register("SchoolSchedule", {
   },
   
   getDom: function() {
+    var mainDiv = document.createElement("div");
+    mainDiv.className = "scheduleMain";
     var scheduleDiv = document.createElement("div");
     scheduleDiv.className = "schedule";
     var scheDatesDiv = document.createElement("div");
@@ -113,7 +115,7 @@ Module.register("SchoolSchedule", {
     var developedbyDiv = document.createElement("div");
     developedbyDiv.className = "devby";
     developedbyDiv.innerHTML = "이지원 Github @Av3lla";
-
+    
     if (!this.isThereSchedule) {
       exceptionTextDiv.innerHTML = "설정한 기간 중 학사일정이 없습니다.";
       exceptionDiv.append(exceptionTextDiv, developedbyDiv);
@@ -122,8 +124,9 @@ Module.register("SchoolSchedule", {
       scheDatesDiv.innerHTML = this.scheduleDates;
       scheNamesDiv.innerHTML = this.scheduleNames;
     }
-
-    scheduleDiv.append(scheDatesDiv, scheNamesDiv, developedbyDiv);    
-    return scheduleDiv;
+    
+    scheduleDiv.append(scheDatesDiv, scheNamesDiv);
+    mainDiv.append(scheduleDiv, developedbyDiv);
+    return mainDiv;
   }
 });
