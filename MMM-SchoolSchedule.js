@@ -5,7 +5,7 @@
 * MIT Licensed.
 */
 
-Module.register("SchoolSchedule", {
+Module.register("MMM-SchoolSchedule", {
   defaults: {
     key: null,
     schoolName: null,
@@ -34,7 +34,7 @@ Module.register("SchoolSchedule", {
   },
   
   getStyles: function() {
-    return ["SchoolSchedule.css"];
+    return ["MMM-SchoolSchedule.css"];
   },
   
   getHeader: function() {

@@ -23,7 +23,7 @@ A module for the [MagicMirror](https://github.com/MichMich/MagicMirror) to displ
     ```shell
     cd ~/MagicMirror/modules && git clone https://github.com/Av3lla/school-schedule-module
     ```
-    ### [* Folder name issue](#known-issues)
+    ~~### [* Folder name issue](#known-issues)~~
 
     ### Configuration
 
@@ -31,7 +31,7 @@ A module for the [MagicMirror](https://github.com/MichMich/MagicMirror) to displ
 
     ```js
     {
-    	module: 'SchoolSchedule',
+    	module: 'MMM-SchoolSchedule',
     	position: 'bottom_right',
     	config: {
             key: 'ApiKey',
@@ -52,6 +52,3 @@ A module for the [MagicMirror](https://github.com/MichMich/MagicMirror) to displ
 ---
 
 ### NOTE
-
-#### Known Issues
-  * You Need to change the *folder name* from `school-schedule-module` to `SchoolSchedule`.
