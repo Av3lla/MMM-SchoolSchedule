@@ -87,8 +87,8 @@ Module.register("MMM-SchoolSchedule", {
         if (i.EVENT_NM === "토요휴업일") {
           continue;
         } else {
-          this.scheduleDates += i.AA_YMD.slice(4, 9) + '</br>';
-          this.scheduleNames += i.EVENT_NM.slice(0, 12) + '</br>';
+          this.scheduleDates += `${i.AA_YMD.slice(4, 6)}/${i.AA_YMD.slice(6, 9)}</br>`;
+          this.scheduleNames += `${i.EVENT_NM.slice(0, 12)}</br>`;
         }
       }
       this.isThereSchedule = true;
