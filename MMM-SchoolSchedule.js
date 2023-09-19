@@ -65,6 +65,7 @@ Module.register("MMM-SchoolSchedule", {
   getSchedule: async function(eduCode, schoolCode) {
     //const date = new Date('2022-03-01');
     const date = new Date();
+    date.setHours(date.getHours() + 9); //UTC+9
     const fromDate = date.toISOString().replace(/-/g, '').slice(0, 8);
     let toDate = date;
     toDate.setDate(toDate.getDate() + this.config.loadDates);
